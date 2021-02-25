@@ -8,7 +8,7 @@ Promoting work on machine translation in low resource scenarios and for minority
 * [The Tatoeba MT challenge](https://github.com/Helsinki-NLP/Tatoeba-Challenge) (especially the subsets for [zero-shot](https://github.com/Helsinki-NLP/Tatoeba-Challenge/blob/master/results/tatoeba-results-all-subset-zero.md), [lowest](https://github.com/Helsinki-NLP/Tatoeba-Challenge/blob/master/results/tatoeba-results-all-subset-lowest.md), [lower](https://github.com/Helsinki-NLP/Tatoeba-Challenge/blob/master/results/tatoeba-results-all-subset-lower.md) and [medium](https://github.com/Helsinki-NLP/Tatoeba-Challenge/blob/master/results/tatoeba-results-all-subset-medium.md) sized language pairs
 * [WMT 2020 very low resource MT](http://www.statmt.org/wmt20/unsup_and_very_low_res/)
 * [WMT 2021 low resource MT](http://www.statmt.org/wmt21/)
-* [AmericasNLP](http://turing.iimas.unam.mx/americasnlp/)
+* [AmericasNLP shared task on indigenous languages of the Americas](http://turing.iimas.unam.mx/americasnlp/st.html)
 * [Tico-19](https://tico-19.github.io/) - Translation Initiative for COVID-19
 
 ## Projects and initiatives
