@@ -2,7 +2,7 @@
 
 Promoting work on machine translation in low resource scenarios and for minority and under-resourced languages
 
-## Data sets abd benchmarks
+## Data sets and benchmarks
 
 * [https://github.com/facebookresearch/flores/](FloRes)
 * [The Tatoeba MT challenge](https://github.com/Helsinki-NLP/Tatoeba-Challenge) (especially the subsets for [zero-shot](results/tatoeba-results-all-subset-zero.md), [lowest](results/tatoeba-results-all-subset-lowest.md), [lower](results/tatoeba-results-all-subset-lower.md) and [medium](results/tatoeba-results-all-subset-medium.md) sized language pairs
