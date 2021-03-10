@@ -15,8 +15,8 @@ Promoting work on machine translation in low resource scenarios and for minority
 ## Projects and project ideas
 
 
-* [NMT maps:](blob/master/NMT-map/): show available models and their quality on maps
-* [NMT leaderboard:](blob/master/NMT-leaderboard/) Create a streamlined and easy-to-use extensible leaderboard for NMT with support for a growing number of languages and benchmarks
+* [NMT maps:](NMT-map/): show available models and their quality on maps
+* [NMT leaderboard:](NMT-leaderboard/) Create a streamlined and easy-to-use extensible leaderboard for NMT with support for a growing number of languages and benchmarks
 
 
 ## Related projects and initiatives
