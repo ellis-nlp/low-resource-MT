@@ -1,0 +1,3 @@
+[submodule "NMT-map/langinfo"]
+	path = NMT-map/langinfo
+	url = https://github.com/robertostling/langinfo

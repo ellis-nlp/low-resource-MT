@@ -11,7 +11,15 @@ Promoting work on machine translation in low resource scenarios and for minority
 * [AmericasNLP shared task on indigenous languages of the Americas](http://turing.iimas.unam.mx/americasnlp/st.html)
 * [Tico-19](https://tico-19.github.io/) - Translation Initiative for COVID-19
 
-## Projects and initiatives
+
+## Projects and project ideas
+
+
+* [NMT maps:](blob/master/NMT-map/): show available models and their quality on maps
+* [NMT leaderboard:](blob/master/NMT-leaderboard/) Create a streamlined and easy-to-use extensible leaderboard for NMT with support for a growing number of languages and benchmarks
+
+
+## Related projects and initiatives
 
 * [Masakhane](https://www.masakhane.io/)
 * [GoURMET](https://gourmet-project.eu/)
