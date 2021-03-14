@@ -59,7 +59,8 @@ ${RELEASED_MODELS_ALL}:
 ## various maps
 
 NMT-map-src2trg-all.html: ${RELEASED_MODELS_ALL}
-	python3 create-map.py < $< > ${@:.html=.json}
+	sed 's/\_[a-zA-Z]*//g' < $< |\
+	python3 create-map.py > ${@:.html=.json}
 	cat create-src2trg-map.js >> ${@:.html=.json}
 	cat create-map.html-template |\
 	sed -e 's#__TITLE__#Tatoeba MT Challenge - Pre-trained NMT models (source language plot)#' \
@@ -67,7 +68,8 @@ NMT-map-src2trg-all.html: ${RELEASED_MODELS_ALL}
 	    -e 's#__JSONFILE__#${@:.html=.json}#' > $@
 
 NMT-map-trg2src-all.html: ${RELEASED_MODELS_ALL}
-	python3 create-map.py -t < $< > ${@:.html=.json}
+	sed 's/\_[a-zA-Z]*//g' < $< |\
+	python3 create-map.py -t > ${@:.html=.json}
 	cat create-trg2src-map.js >> ${@:.html=.json}
 	cat create-map.html-template |\
 	sed -e 's#__TITLE__#Tatoeba MT Challenge - Pre-trained NMT models (target language plot)#' \
@@ -75,7 +77,8 @@ NMT-map-trg2src-all.html: ${RELEASED_MODELS_ALL}
 	    -e 's#__JSONFILE__#${@:.html=.json}#' > $@
 
 NMT-map-src2trg.html: ${RELEASED_MODELS}
-	python3 create-map.py < $< > ${@:.html=.json}
+	sed 's/\_[a-zA-Z]*//g' < $< |\
+	python3 create-map.py > ${@:.html=.json}
 	cat create-src2trg-map.js >> ${@:.html=.json}
 	cat create-map.html-template |\
 	sed -e 's#__TITLE__#Tatoeba MT Challenge - Pre-trained NMT models (source language plot)#' \
@@ -83,7 +86,8 @@ NMT-map-src2trg.html: ${RELEASED_MODELS}
 	    -e 's#__JSONFILE__#${@:.html=.json}#' > $@
 
 NMT-map-trg2src.html: ${RELEASED_MODELS}
-	python3 create-map.py -t < $< > ${@:.html=.json}
+	sed 's/\_[a-zA-Z]*//g' < $< |\
+	python3 create-map.py -t > ${@:.html=.json}
 	cat create-trg2src-map.js >> ${@:.html=.json}
 	cat create-map.html-template |\
 	sed -e 's#__TITLE__#Tatoeba MT Challenge - Pre-trained NMT models (target language plot)#' \
