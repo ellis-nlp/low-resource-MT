@@ -19,6 +19,7 @@ function onEachFeature(feature, layer) {
     html += '<dd>Download: <a href="https://object.pouta.csc.fi/Tatoeba-MT-models/' + feature.model + '">' + feature.model + '</a></dd>';
     html += '<dd>BLEU = ' + feature.properties.bleu + '</dd>';
     html += '<dd>chr-F2 = ' + feature.properties.chrF + '</dd>';
+    html += '<dd>test set size = ' + feature.properties.testset_size + '</dd>';
     html += "</dl>";
     layer.bindPopup(html);
     if (geojson.properties.legend.hasOwnProperty(TO_DIRECTION_id)) {
