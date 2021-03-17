@@ -70,7 +70,7 @@ dataset-info:
 NMT-map-src2trg-all.html: ${RELEASED_MODELS_ALL} dataset-info
 	sed 's/\_[a-zA-Z]*//g' < $< |\
 	python3 create-map.py > ${@:.html=.json}
-	sed -e 's/TO_LANGID/trgid/g' -e 's/TO_LANGS/trglangs/g' \
+	sed -e 's/TO_LANGID/trgid/g' \
 	    -e 's/FROM_LANGID/srcid/g' < create-map-template.js >> ${@:.html=.json}
 	cat create-map.html-template |\
 	sed -e 's#__TITLE__#Tatoeba MT Challenge - Pre-trained NMT models (source language plot)#' \
@@ -80,7 +80,7 @@ NMT-map-src2trg-all.html: ${RELEASED_MODELS_ALL} dataset-info
 NMT-map-trg2src-all.html: ${RELEASED_MODELS_ALL} dataset-info
 	sed 's/\_[a-zA-Z]*//g' < $< |\
 	python3 create-map.py -t > ${@:.html=.json}
-	sed -e 's/TO_LANGID/srcid/g' -e 's/TO_LANGS/srclangs/g' \
+	sed -e 's/TO_LANGID/srcid/g' \
 	    -e 's/FROM_LANGID/trgid/g' < create-map-template.js >> ${@:.html=.json}
 	cat create-map.html-template |\
 	sed -e 's#__TITLE__#Tatoeba MT Challenge - Pre-trained NMT models (target language plot)#' \
@@ -90,7 +90,7 @@ NMT-map-trg2src-all.html: ${RELEASED_MODELS_ALL} dataset-info
 NMT-map-src2trg.html: ${RELEASED_MODELS} dataset-info
 	sed 's/\_[a-zA-Z]*//g' < $< |\
 	python3 create-map.py > ${@:.html=.json}
-	sed -e 's/TO_LANGID/trgid/g' -e 's/TO_LANGS/trglangs/g' \
+	sed -e 's/TO_LANGID/trgid/g' \
 	    -e 's/FROM_LANGID/srcid/g' < create-map-template.js >> ${@:.html=.json}
 	cat create-map.html-template |\
 	sed -e 's#__TITLE__#Tatoeba MT Challenge - Pre-trained NMT models (source language plot)#' \
@@ -100,7 +100,7 @@ NMT-map-src2trg.html: ${RELEASED_MODELS} dataset-info
 NMT-map-trg2src.html: ${RELEASED_MODELS} dataset-info
 	sed 's/\_[a-zA-Z]*//g' < $< |\
 	python3 create-map.py -t > ${@:.html=.json}
-	sed -e 's/TO_LANGID/srcid/g' -e 's/TO_LANGS/srclangs/g' \
+	sed -e 's/TO_LANGID/srcid/g' \
 	    -e 's/FROM_LANGID/trgid/g' < create-map-template.js >> ${@:.html=.json}
 	cat create-map.html-template |\
 	sed -e 's#__TITLE__#Tatoeba MT Challenge - Pre-trained NMT models (target language plot)#' \
