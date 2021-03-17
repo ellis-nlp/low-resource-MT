@@ -1,5 +1,4 @@
 var markers = [],
-    langid2name = {},
     langid2layers = {},
     flayers = {},
     map = L.map('map', {fullscreenControl: true}).setView([5, 160], 2);
@@ -23,7 +22,6 @@ function onEachFeature(feature, layer) {
     html += "</dl>";
     layer.bindPopup(html);
     if (geojson.properties.legend.hasOwnProperty(TO_DIRECTION_id)) {
-	langid2name[TO_DIRECTION_id] = feature.properties.TO_DIRECTION_lang;
         if (langid2layers.hasOwnProperty(TO_DIRECTION_id)) {
             langid2layers[TO_DIRECTION_id].push(layer);
         } else {
@@ -51,14 +49,8 @@ L.geoJSON([geojson], {
 var group = new L.featureGroup(markers);
 map.fitBounds(group.getBounds());
 
-function langid_sort(a, b) {
-    if (langid2name[a] < langid2name[b]) return -1;
-    if (langid2name[a] > langid2name[b]) return 1;
-    return 0;
-}
-
-Object.keys(langid2layers).sort(langid_sort).forEach(function(id) {
+for (id in langid2layers) {
     flayers[geojson.properties.legend[id]] = L.layerGroup(langid2layers[id]);
     flayers[geojson.properties.legend[id]].addTo(map);
-})
-L.control.layers(flayers).addTo(map).expand();
+}
+L.control.layers(flayers, {}, {"collapsed": false, "sortLayers": true}).addTo(map)
