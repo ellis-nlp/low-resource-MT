@@ -1,7 +1,7 @@
 var markers = [],
     langid2layers = {},
     flayers = {},
-    map = L.map('map', {fullscreenControl: true}).setView([5, 160], 2);
+    map = L.map('map', {fullscreenControl: true}).setView([35, 160], 2);
 
 var OpenStreetMap_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
     maxZoom: 18,
