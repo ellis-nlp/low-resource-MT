@@ -43,8 +43,10 @@ If everything works as expected then you should obtain HTML pages that show maps
 
 ## TODO
 
+* make the language selection in the legend more obvious
 * sort the languages in the legend
 * initialize the map with only one target/source language
 * legend for the color scale
 * support other benchmarks than the Tatoeba benchmark
+* colored background maps (see http://leaflet-extras.github.io/leaflet-providers/preview/)
 * ...
