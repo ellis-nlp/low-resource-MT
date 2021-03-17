@@ -67,7 +67,7 @@ dataset-info:
 
 ## various maps
 
-NMT-map-src2trg-all.html: ${RELEASED_MODELS_ALL}
+NMT-map-src2trg-all.html: ${RELEASED_MODELS_ALL} dataset-info
 	sed 's/\_[a-zA-Z]*//g' < $< |\
 	python3 create-map.py > ${@:.html=.json}
 	sed -e 's/TO_LANGID/trgid/g' -e 's/TO_LANGS/trglangs/g' \
@@ -77,7 +77,7 @@ NMT-map-src2trg-all.html: ${RELEASED_MODELS_ALL}
 	    -e 's#__DESCRIPTION__#${SRC2TRG_MAP_DESCRIPTION}${MODEL_ALLMAP_WARNING}#' \
 	    -e 's#__JSONFILE__#${@:.html=.json}#' > $@
 
-NMT-map-trg2src-all.html: ${RELEASED_MODELS_ALL}
+NMT-map-trg2src-all.html: ${RELEASED_MODELS_ALL} dataset-info
 	sed 's/\_[a-zA-Z]*//g' < $< |\
 	python3 create-map.py -t > ${@:.html=.json}
 	sed -e 's/TO_LANGID/srcid/g' -e 's/TO_LANGS/srclangs/g' \
@@ -87,7 +87,7 @@ NMT-map-trg2src-all.html: ${RELEASED_MODELS_ALL}
 	    -e 's#__DESCRIPTION__#${TRG2SRC_MAP_DESCRIPTION}${MODEL_ALLMAP_WARNING}#' \
 	    -e 's#__JSONFILE__#${@:.html=.json}#' > $@
 
-NMT-map-src2trg.html: ${RELEASED_MODELS}
+NMT-map-src2trg.html: ${RELEASED_MODELS} dataset-info
 	sed 's/\_[a-zA-Z]*//g' < $< |\
 	python3 create-map.py > ${@:.html=.json}
 	sed -e 's/TO_LANGID/trgid/g' -e 's/TO_LANGS/trglangs/g' \
@@ -97,7 +97,7 @@ NMT-map-src2trg.html: ${RELEASED_MODELS}
 	    -e 's#__DESCRIPTION__#${SRC2TRG_MAP_DESCRIPTION}${MODEL_MAP_WARNING}#' \
 	    -e 's#__JSONFILE__#${@:.html=.json}#' > $@
 
-NMT-map-trg2src.html: ${RELEASED_MODELS}
+NMT-map-trg2src.html: ${RELEASED_MODELS} dataset-info
 	sed 's/\_[a-zA-Z]*//g' < $< |\
 	python3 create-map.py -t > ${@:.html=.json}
 	sed -e 's/TO_LANGID/srcid/g' -e 's/TO_LANGS/srclangs/g' \

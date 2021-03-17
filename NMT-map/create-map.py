@@ -19,6 +19,7 @@ import sys
 import argparse
 import math
 import json
+import csv
 # from iso639 import languages
 
 from langinfo.glottolog import Glottolog
@@ -32,13 +33,14 @@ def get_color(v):
     return '#%02x%02x%02x' % rgb
 
 def main():
-
     parser = argparse.ArgumentParser(description='Create a map of NMT models.')
     parser.add_argument('-t','--trg2src','--sort-by-source-language', action='store_true',
                         help='plot target language locations and sort layers by source language')
     parser.add_argument('-v','--verbose', action='store_true',
                         help='verbose output')
     args = parser.parse_args()
+    langid2test_set_size = {_id: math.log(int(testset), 10) for _id, testset in csv.reader(open("langid2test_set_size.tsv", newline=""), delimiter = "\t")}
+    avg_test_set_size = sum(langid2test_set_size.values())/len(langid2test_set_size)
 
     langinfo = []
     srclangs = {}
@@ -50,6 +52,7 @@ def main():
             raise ValueError('Expected four fields, found: ' + line)
         elif not data[0] in done:
             langids = data[0].split('-')
+            size = max(langid2test_set_size.get(data[0], 1.0), 1.0)
             chrf = float(data[1])                
             bleu = float(data[2])
             url = data[3].split('/')
@@ -83,7 +86,8 @@ def main():
                                          "trglang": trglangname,
                                          "bleu": bleu,
                                          "chrF": chrf,
-                                         "color": color },
+                                         "color": color,
+                                         "size": size },
                                        "type": "Feature" } )
                     done[data[0]] = True
                 else:
@@ -105,8 +109,6 @@ def main():
     print("var geojson = %s;" % jsonstr)
 
 
-
-    
 
 if __name__ == '__main__': main()
 
