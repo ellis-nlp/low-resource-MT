@@ -1,5 +1,5 @@
 var markers = [],
-    langnames = {},
+    langid2name = {},
     langid2layers = {},
     flayers = {},
     map = L.map('map', {fullscreenControl: true}).setView([5, 160], 2);
@@ -22,15 +22,16 @@ function onEachFeature(feature, layer) {
     html += '<dd>chr-F2 = ' + feature.properties.chrF + '</dd>';
     html += "</dl>";
     layer.bindPopup(html);
-    if (geojson.properties.legend.hasOwnProperty(TO_LANGID)) {
-        if (langid2layers.hasOwnProperty(TO_LANGID)) {
-            langid2layers[TO_LANGID].push(layer);
+    if (geojson.properties.legend.hasOwnProperty(TO_DIRECTION_id)) {
+	langid2name[TO_DIRECTION_id] = feature.properties.TO_DIRECTION_lang;
+        if (langid2layers.hasOwnProperty(TO_DIRECTION_id)) {
+            langid2layers[TO_DIRECTION_id].push(layer);
         } else {
-            langid2layers[TO_LANGID] = [];
-	    langid2layers[TO_LANGID].push(layer);
+            langid2layers[TO_DIRECTION_id] = [];
+	    langid2layers[TO_DIRECTION_id].push(layer);
         }
     }
-    layer.bindTooltip(feature.properties.FROM_LANGID);
+    layer.bindTooltip(feature.properties.FROM_DIRECTION_id);
     markers.push(layer);
 }
 L.geoJSON([geojson], {
@@ -50,7 +51,13 @@ L.geoJSON([geojson], {
 var group = new L.featureGroup(markers);
 map.fitBounds(group.getBounds());
 
-Object.keys(langid2layers).sort().forEach(function(id) {
+function langid_sort(a, b) {
+    if (langid2name[a] < langid2name[b]) return -1;
+    if (langid2name[a] > langid2name[b]) return 1;
+    return 0;
+}
+
+Object.keys(langid2layers).sort(langid_sort).forEach(function(id) {
     flayers[geojson.properties.legend[id]] = L.layerGroup(langid2layers[id]);
     flayers[geojson.properties.legend[id]].addTo(map);
 })

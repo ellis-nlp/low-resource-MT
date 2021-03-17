@@ -70,8 +70,8 @@ dataset-info:
 NMT-map-src2trg-all.html: ${RELEASED_MODELS_ALL} dataset-info
 	sed 's/\_[a-zA-Z]*//g' < $< |\
 	python3 create-map.py > ${@:.html=.json}
-	sed -e 's/TO_LANGID/trgid/g' \
-	    -e 's/FROM_LANGID/srcid/g' < create-map-template.js >> ${@:.html=.json}
+	sed -e 's/TO_DIRECTION_/trg/g' \
+	    -e 's/FROM_DIRECTION_/src/g' < create-map-template.js >> ${@:.html=.json}
 	cat create-map.html-template |\
 	sed -e 's#__TITLE__#Tatoeba MT Challenge - Pre-trained NMT models (source language plot)#' \
 	    -e 's#__DESCRIPTION__#${SRC2TRG_MAP_DESCRIPTION}${MODEL_ALLMAP_WARNING}#' \
@@ -80,8 +80,8 @@ NMT-map-src2trg-all.html: ${RELEASED_MODELS_ALL} dataset-info
 NMT-map-trg2src-all.html: ${RELEASED_MODELS_ALL} dataset-info
 	sed 's/\_[a-zA-Z]*//g' < $< |\
 	python3 create-map.py -t > ${@:.html=.json}
-	sed -e 's/TO_LANGID/srcid/g' \
-	    -e 's/FROM_LANGID/trgid/g' < create-map-template.js >> ${@:.html=.json}
+	sed -e 's/TO_DIRECTION_/src/g' \
+	    -e 's/FROM_DIRECTION_/trg/g' < create-map-template.js >> ${@:.html=.json}
 	cat create-map.html-template |\
 	sed -e 's#__TITLE__#Tatoeba MT Challenge - Pre-trained NMT models (target language plot)#' \
 	    -e 's#__DESCRIPTION__#${TRG2SRC_MAP_DESCRIPTION}${MODEL_ALLMAP_WARNING}#' \
@@ -90,8 +90,8 @@ NMT-map-trg2src-all.html: ${RELEASED_MODELS_ALL} dataset-info
 NMT-map-src2trg.html: ${RELEASED_MODELS} dataset-info
 	sed 's/\_[a-zA-Z]*//g' < $< |\
 	python3 create-map.py > ${@:.html=.json}
-	sed -e 's/TO_LANGID/trgid/g' \
-	    -e 's/FROM_LANGID/srcid/g' < create-map-template.js >> ${@:.html=.json}
+	sed -e 's/TO_DIRECTION_/trg/g' \
+	    -e 's/FROM_DIRECTION_/srd/g' < create-map-template.js >> ${@:.html=.json}
 	cat create-map.html-template |\
 	sed -e 's#__TITLE__#Tatoeba MT Challenge - Pre-trained NMT models (source language plot)#' \
 	    -e 's#__DESCRIPTION__#${SRC2TRG_MAP_DESCRIPTION}${MODEL_MAP_WARNING}#' \
@@ -100,8 +100,8 @@ NMT-map-src2trg.html: ${RELEASED_MODELS} dataset-info
 NMT-map-trg2src.html: ${RELEASED_MODELS} dataset-info
 	sed 's/\_[a-zA-Z]*//g' < $< |\
 	python3 create-map.py -t > ${@:.html=.json}
-	sed -e 's/TO_LANGID/srcid/g' \
-	    -e 's/FROM_LANGID/trgid/g' < create-map-template.js >> ${@:.html=.json}
+	sed -e 's/TO_DIRECTION_/src/g' \
+	    -e 's/FROM_DIRECTION_/trg/g' < create-map-template.js >> ${@:.html=.json}
 	cat create-map.html-template |\
 	sed -e 's#__TITLE__#Tatoeba MT Challenge - Pre-trained NMT models (target language plot)#' \
 	    -e 's#__DESCRIPTION__#${TRG2SRC_MAP_DESCRIPTION}${MODEL_MAP_WARNING}#' \
