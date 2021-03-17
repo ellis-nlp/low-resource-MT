@@ -54,4 +54,4 @@ for (id in langid2layers) {
     flayers[geojson.properties.legend[id]] = L.layerGroup(langid2layers[id]);
     flayers[geojson.properties.legend[id]].addTo(map);
 }
-L.control.layers(flayers, {}, {"collapsed": false, "sortLayers": true}).addTo(map)
+L.control.layers(flayers, {}, {"sortLayers": true}).addTo(map).expand();
