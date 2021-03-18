@@ -60,7 +60,9 @@ control = L.control.layers(flayers, {}, {"sortLayers": true}).addTo(map).expand(
 var i;
 for (i = 0; i < control.childNodes[1].length; ++i) {
     if (control.childNodes[1][i].nextSibling.innerHTML.endsWith("English")) {
-	control.childNodes[1][i].checked = true;
+	// checked = true isn't enough; the just checks the button,
+	// we need to generate an actual click to change the layer
+	control.childNodes[1][i].click();
 	break;
     }
 }
