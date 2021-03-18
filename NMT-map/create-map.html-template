@@ -22,5 +22,24 @@
       
       <div id='map'></div>
       <script src="__JSONFILE__" type="text/javascript"></script>
+      <div id='footer'>
+	<hr/>
+	<span style="font-size:small">
+	The code for generating this map is available on <a href="https://github.com/ellis-nlp/low-resource-MT/tree/main/NMT-map">GitHub</a>.<br/>
+	Acknowledgments: Data from 
+	<a href="https://opus.nlpl.eu/">OPUS</a> /
+	<a href="https://tatoeba.org">Tatoeba</a>,
+	language coordinates from
+	<a href="https://glottolog.org/">Glottolog</a> / 
+	<a href="https://github.com/robertostling/langinfo">langinfo</a>,
+	funding from the 
+	<a href="https://erc.europa.eu/">ERC</a> / <a href="https://ec.europa.eu/programmes/horizon2020/en">EU</a>
+	(<a href="http://www.helsinki.fi/fotran">FoTran</a>, <a href="https://memad.eu/">MeMAD</a>),
+	<a href="https://www.european-language-grid.eu/">ELG</a>
+	(<a href="https://github.com/Helsinki-NLP/OPUS-MT">OPUS-MT</a>),
+	computing power from
+	<a href="https://www.csc.fi/">CSC</a>
+	</span>
+      </div>
     </body>
 </html>
