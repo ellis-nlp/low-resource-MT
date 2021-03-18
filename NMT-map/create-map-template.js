@@ -54,4 +54,13 @@ for (id in langid2layers) {
     flayers[geojson.properties.legend[id]] = L.layerGroup(langid2layers[id]);
     flayers[geojson.properties.legend[id]].addTo(map);
 }
-L.control.layers(flayers, {}, {"sortLayers": true}).addTo(map).expand();
+control = L.control.layers(flayers, {}, {"sortLayers": true}).addTo(map).expand().getContainer();
+
+// Hacky for loop but attempts to do this nicely failed
+var i;
+for (i = 0; i < control.childNodes[1].length; ++i) {
+    if (control.childNodes[1][i].nextSibling.innerHTML.endsWith("English")) {
+	control.childNodes[1][i].checked = true;
+	break;
+    }
+}
