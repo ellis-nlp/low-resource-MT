@@ -33,15 +33,14 @@ install:
 
 
 
-WEBPAGE_TITLE = <a href="https://github.com/Helsinki-NLP/Tatoeba-Challenge/">The Tatoeba MT Challenge</a> - \
-<a href="https://github.com/Helsinki-NLP/Tatoeba-Challenge/blob/master/results/tatoeba-results-all.md">Available NMT models</a>
+WEBPAGE_TITLE = The Tatoeba MT Challenge - Available NMT models
 
 MODEL_ALLMAP_WARNING = <p><b>IMPORTANT NOTE: Some of the test sets used in measuring translation quality are WAY TOO SMALL to be reliable! Some of them include only a few lines of reference translations!</b></p>
 
 MODEL_MAP_WARNING = <p><b>IMPORTANT NOTE: Some of the test sets used in measuring translation quality are very small and will not be reliable! Check the details in the Tatoeba MT Challenge benchmark releases!</b></p>
 
 SRC2TRG_MAP_DESCRIPTION = <p><ul><li>Select a <b>target language</b> from the menu on the top right corner of the map</li> \
-<li>The map shows source languages that are supported by available models</li> \
+<li>The map shows source languages that are supported by <a href="https://github.com/Helsinki-NLP/Tatoeba-Challenge/blob/master/results/tatoeba-results-all.md">available models</a></li> \
 <li>Colors indicate the quality on a scale from red (bad) to green (best) measured by chr-F2 scores</li> \
 <li>The size of the dot represents the size (i.e. reliability) of the test set</li>\
 <li>Click on the dots to get more information about the language pair and to get links for downloading the model</li> \
@@ -49,7 +48,7 @@ SRC2TRG_MAP_DESCRIPTION = <p><ul><li>Select a <b>target language</b> from the me
 
 
 TRG2SRC_MAP_DESCRIPTION = <p><ul><li>Select a <b>source language</b> from the menu on the top right corner of the map</li> \
-<li>The map shows target languages that are supported by available models</li> \
+<li>The map shows target languages that are supported by <a href="https://github.com/Helsinki-NLP/Tatoeba-Challenge/blob/master/results/tatoeba-results-all.md">available models</a></li> \
 <li>Colors indicate the quality on a scale from red (bad) to green (best) measured by chr-F2 scores</li> \
 <li>The size of the dot represents the size (i.e. reliability) of the test set</li> \
 <li>Click on the dots to get more information about the language pair and to get links for downloading the model</li> \
