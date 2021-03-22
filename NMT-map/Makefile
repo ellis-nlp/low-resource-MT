@@ -32,6 +32,23 @@ install:
 	cd langinfo && python3 setup.py install --user
 
 
+## change some language codes to match Glottolog
+## TODO: is it ok to move macro language swahili to individual lang swahili?
+## TODO: is there some better way to do this?
+
+FIX_LANG_CODES = sed 	-e 's/^est\-/ekk\-/' \
+			-e 's/^kur_Latn\-/kmr\-/' \
+			-e 's/^kur_Arab\-/ckb\-/' \
+			-e 's/^fas\-/pes\-/' \
+			-e 's/^sqj\-/sqi\-/' \
+			-e 's/^swa\-/swh\-/' \
+			-e 's/\-est	/\-ekk	/' \
+			-e 's/\-kur_Latn	/\-kmr	/' \
+			-e 's/\-kur_Arab	/\-ckb	/' \
+			-e 's/\-fas	/\-pes	/' \
+			-e 's/\-sqi	/\-sqj	/' \
+			-e 's/\-swa	/\-swh	/'
+
 
 WEBPAGE_TITLE = The Tatoeba MT Challenge - Available NMT models
 
@@ -72,7 +89,8 @@ ${RELEASED_MODELS_ALL}:
 
 html/NMT-map/Tatoeba/200/src2trg/index.html: ${RELEASED_MODELS_ALL}
 	mkdir -p $(dir $@)
-	sed 's/\_[a-zA-Z]*//g' < $< |\
+	cat $< | ${FIX_LANG_CODES} |\
+	sed 's/\_[a-zA-Z]*//g' |\
 	python3 create-map.py > ${@:.html=.json}
 	sed -e 's/TO_DIRECTION_/trg/g' \
 	    -e 's/FROM_DIRECTION_/srd/g' < create-map-template.js >> ${@:.html=.json}
@@ -83,7 +101,8 @@ html/NMT-map/Tatoeba/200/src2trg/index.html: ${RELEASED_MODELS_ALL}
 
 html/NMT-map/Tatoeba/200/trg2src/index.html: ${RELEASED_MODELS_ALL}
 	mkdir -p $(dir $@)
-	sed 's/\_[a-zA-Z]*//g' < $< |\
+	cat $< | ${FIX_LANG_CODES} |\
+	sed 's/\_[a-zA-Z]*//g' |\
 	python3 create-map.py -t > ${@:.html=.json}
 	sed -e 's/TO_DIRECTION_/src/g' \
 	    -e 's/FROM_DIRECTION_/trg/g' < create-map-template.js >> ${@:.html=.json}
@@ -95,7 +114,8 @@ html/NMT-map/Tatoeba/200/trg2src/index.html: ${RELEASED_MODELS_ALL}
 
 html/NMT-map/Tatoeba/all/trg2src/index.html: ${RELEASED_MODELS_ALL}
 	mkdir -p $(dir $@)
-	sed 's/\_[a-zA-Z]*//g' < $< |\
+	cat $< | ${FIX_LANG_CODES} |\
+	sed 's/\_[a-zA-Z]*//g' |\
 	python3 create-map.py -t > ${@:.html=.json}
 	sed -e 's/TO_DIRECTION_/src/g' \
 	    -e 's/FROM_DIRECTION_/trg/g' < create-map-template.js >> ${@:.html=.json}
@@ -106,7 +126,8 @@ html/NMT-map/Tatoeba/all/trg2src/index.html: ${RELEASED_MODELS_ALL}
 
 html/NMT-map/Tatoeba/all/src2trg/index.html: ${RELEASED_MODELS_ALL}
 	mkdir -p $(dir $@)
-	sed 's/\_[a-zA-Z]*//g' < $< |\
+	cat $< | ${FIX_LANG_CODES} |\
+	sed 's/\_[a-zA-Z]*//g' |\
 	python3 create-map.py > ${@:.html=.json}
 	sed -e 's/TO_DIRECTION_/trg/g' \
 	    -e 's/FROM_DIRECTION_/src/g' < create-map-template.js >> ${@:.html=.json}
