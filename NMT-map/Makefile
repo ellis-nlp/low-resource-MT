@@ -18,11 +18,14 @@ TATOEBA_MT_URL = https://raw.githubusercontent.com/Helsinki-NLP/Tatoeba-Challeng
 RELEASED_MODELS        = tatoeba-models/released-model-results.txt
 RELEASED_MODELS_ALL    = tatoeba-models/released-model-results-all.txt
 RELEASED_MODELS_LATEST = tatoeba-models/released-model-results-${TATOEBA_VERSION}.txt
-RELEASED_MODELS_OTHER  = tatoeba-models/released-model-results-other.txt
+# RELEASED_MODELS_OTHER  = tatoeba-models/released-model-results-other.txt
+RELEASED_MODELS_OTHER  = tatoeba-models/results/other.txt
 
-DOMAINS = 	tico19 news newstest2009 newstest2010 newstest2011 \
+DOMAINS = 	flores101-dev flores101-devtest tico19 \
+		news newstest2009 newstest2010 newstest2011 \
 		newstest2012 newstest2013 newstest2014 newstest2015 \
-		newstest2016 newstest2017 newstest2018 newstest2019 
+		newstest2016 newstest2017 newstest2018 newstest2019 \
+		newstest2020 newstest2021
 DOMAIN = ${lastword ${DOMAINS}}
 
 
@@ -61,17 +64,27 @@ install:
 
 ## change some language codes to match Glottolog
 ## TODO: is it ok to move macro language swahili to individual lang swahili?
+## TODO: is it ok to map msa to zsm?
+## TODO: is it ok to map orm to gaz?
 ## TODO: is there some better way to do this?
 
-FIX_LANG_CODES = sed 	-e 's/^est\-/ekk\-/' \
+FIX_LANG_CODES = sed	-e 's/^ara\-/arb\-/' \
+			-e 's/^arm\-/hye\-/' \
+			-e 's/^est\-/ekk\-/' \
 			-e 's/^kur_Latn\-/kmr\-/' \
 			-e 's/^kur_Arab\-/ckb\-/' \
 			-e 's/^fas\-/pes\-/' \
+			-e 's/^msa\-/zsm\-/' \
+			-e 's/^orm\-/gaz\-/' \
 			-e 's/^sqj\-/sqi\-/' \
 			-e 's/^swa\-/swh\-/' \
+			-e 's/\-ara	/\-arb	/' \
+			-e 's/\-arm	/\-hye	/' \
 			-e 's/\-est	/\-ekk	/' \
 			-e 's/\-kur_Latn	/\-kmr	/' \
 			-e 's/\-kur_Arab	/\-ckb	/' \
+			-e 's/\-msa	/\-zsm	/' \
+			-e 's/\-orm	/\-gaz	/' \
 			-e 's/\-fas	/\-pes	/' \
 			-e 's/\-sqi	/\-sqj	/' \
 			-e 's/\-swa	/\-swh	/'
@@ -130,7 +143,7 @@ html/NMT-map/index.html:
 
 ${RELEASED_MODELS} ${RELEASED_MODELS_ALL} ${RELEASED_MODELS_LATEST} ${RELEASED_MODELS_OTHER}:
 	mkdir -p ${dir $@}
-	wget -O $@ ${TATOEBA_MT_URL}/models/${notdir $@}
+	wget -O $@ ${TATOEBA_MT_URL}/${patsubst tatoeba-models/%,models/%,$@}
 
 ## various maps
 
@@ -212,7 +225,7 @@ html/NMT-map/Tatoeba-${TATOEBA_VERSION}/src2trg/index.html: ${RELEASED_MODELS_LA
 
 html/NMT-map/${DOMAIN}/trg2src/index.html: ${RELEASED_MODELS_OTHER}
 	mkdir -p $(dir $@)
-	grep ${DOMAIN} $< | cut -f1,3- | ${FIX_LANG_CODES} |\
+	grep '${DOMAIN}	' $< | cut -f1,3- | ${FIX_LANG_CODES} |\
 	sed 's/\_[a-zA-Z]*//g' |\
 	python3 create-map.py -t > ${@:.html=.json}
 	sed -e 's/TO_DIRECTION_/src/g' \
