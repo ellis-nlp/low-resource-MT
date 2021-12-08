@@ -17,9 +17,11 @@ TATOEBA_MT_URL = https://raw.githubusercontent.com/Helsinki-NLP/Tatoeba-Challeng
 
 RELEASED_MODELS        = tatoeba-models/released-model-results.txt
 RELEASED_MODELS_ALL    = tatoeba-models/released-model-results-all.txt
-RELEASED_MODELS_LATEST = tatoeba-models/released-model-results-${TATOEBA_VERSION}.txt
-# RELEASED_MODELS_OTHER  = tatoeba-models/released-model-results-other.txt
+RELEASED_MODELS_LATEST = tatoeba-models/results/tatoeba-test-${TATOEBA_VERSION}.txt
 RELEASED_MODELS_OTHER  = tatoeba-models/results/other.txt
+# RELEASED_MODELS_LATEST = tatoeba-models/released-model-results-${TATOEBA_VERSION}.txt
+# RELEASED_MODELS_OTHER  = tatoeba-models/released-model-results-other.txt
+
 
 DOMAINS = 	flores101-dev flores101-devtest tico19 \
 		news newstest2009 newstest2010 newstest2011 \
@@ -78,6 +80,7 @@ FIX_LANG_CODES = sed	-e 's/^ara\-/arb\-/' \
 			-e 's/^orm\-/gaz\-/' \
 			-e 's/^sqj\-/sqi\-/' \
 			-e 's/^swa\-/swh\-/' \
+			-e 's/^zho\-/cmn\-/' \
 			-e 's/\-ara	/\-arb	/' \
 			-e 's/\-arm	/\-hye	/' \
 			-e 's/\-est	/\-ekk	/' \
@@ -87,7 +90,8 @@ FIX_LANG_CODES = sed	-e 's/^ara\-/arb\-/' \
 			-e 's/\-orm	/\-gaz	/' \
 			-e 's/\-fas	/\-pes	/' \
 			-e 's/\-sqi	/\-sqj	/' \
-			-e 's/\-swa	/\-swh	/'
+			-e 's/\-swa	/\-swh	/' \
+			-e 's/\-zho	/\-cmn	/'
 
 
 WEBPAGE_TITLE = The Tatoeba MT Challenge - Available NMT models
@@ -200,7 +204,7 @@ html/NMT-map/Tatoeba-all/src2trg/index.html: ${RELEASED_MODELS_ALL}
 
 html/NMT-map/Tatoeba-${TATOEBA_VERSION}/trg2src/index.html: ${RELEASED_MODELS_LATEST}
 	mkdir -p $(dir $@)
-	cat $< | ${FIX_LANG_CODES} |\
+	cat $< | cut -f1,3- | ${FIX_LANG_CODES} |\
 	sed 's/\_[a-zA-Z]*//g' |\
 	python3 create-map.py -t > ${@:.html=.json}
 	sed -e 's/TO_DIRECTION_/src/g' \
@@ -212,7 +216,7 @@ html/NMT-map/Tatoeba-${TATOEBA_VERSION}/trg2src/index.html: ${RELEASED_MODELS_LA
 
 html/NMT-map/Tatoeba-${TATOEBA_VERSION}/src2trg/index.html: ${RELEASED_MODELS_LATEST}
 	mkdir -p $(dir $@)
-	cat $< | ${FIX_LANG_CODES} |\
+	cat $< | cut -f1,3- | ${FIX_LANG_CODES} |\
 	sed 's/\_[a-zA-Z]*//g' |\
 	python3 create-map.py > ${@:.html=.json}
 	sed -e 's/TO_DIRECTION_/trg/g' \
