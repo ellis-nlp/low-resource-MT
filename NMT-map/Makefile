@@ -4,7 +4,8 @@
 # based on OPUS-MT / Tatoeba-MT-Challenge models
 #
 
-TATOEBA_VERSION = v2021-08-07
+TATOEBA_VERSIONS = v2020-07-28 v2021-08-07
+TATOEBA_VERSION  = ${lastword ${TATOEBA_VERSIONS}}
 
 SRC2TRG_MAPS = 	html/NMT-map/Tatoeba-200/src2trg/index.html \
 		html/NMT-map/Tatoeba-all/src2trg/index.html \
@@ -32,11 +33,27 @@ DOMAIN = ${lastword ${DOMAINS}}
 
 
 .PHONY: all
-all: ${SRC2TRG_MAPS} ${TRG2SRC_MAPS} all-domains html/NMT-map/index.html
+all: ${SRC2TRG_MAPS} ${TRG2SRC_MAPS} all-tatoeba all-domains html/NMT-map/index.html
+
+.PHONMY: update
+update:
+	rm -f ${RELEASED_MODELS}
+	rm -f ${RELEASED_MODELS_ALL}
+	rm -f ${RELEASED_MODELS_LATEST}
+	rm -f ${RELEASED_MODELS_OTHER}
+	rm -f html/NMT-map/index.html
+	${MAKE} all
 
 .PHONY: all-domain
 all-domain: 	html/NMT-map/${DOMAIN}/src2trg/index.html \
 		html/NMT-map/${DOMAIN}/trg2src/index.html
+
+.PHONY: all-tatoeba
+all-tatoeba:
+	for t in ${TATOEBA_VERSIONS}; do \
+	  ${MAKE} TATOEBA_VERSION=$$t html/NMT-map/Tatoeba-$$t/src2trg/index.html; \
+	  ${MAKE} TATOEBA_VERSION=$$t html/NMT-map/Tatoeba-$$t/trg2src/index.html; \
+	done
 
 .PHONY: all-domains
 all-domains:
@@ -121,7 +138,7 @@ TRG2SRC_MAP_DESCRIPTION = <p><ul><li>Select a <b>source language</b> from the me
 
 
 
-html/NMT-map/index.html:
+html/NMT-map/index.html: ${SRC2TRG_MAPS} ${TRG2SRC_MAPS}
 	echo '<!DOCTYPE html>' > $@
 	echo '<html>'         >> $@
 	echo '    <head>'     >> $@
