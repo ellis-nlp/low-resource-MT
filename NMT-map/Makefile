@@ -3,6 +3,9 @@
 # plot available NMT models on a map
 # based on OPUS-MT / Tatoeba-MT-Challenge models
 #
+# other map types:
+# https://leaflet-extras.github.io/leaflet-providers/preview/
+
 
 TATOEBA_VERSIONS = v2020-07-28 v2021-08-07
 TATOEBA_VERSION  = ${lastword ${TATOEBA_VERSIONS}}
