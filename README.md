@@ -15,7 +15,7 @@ Promoting work on machine translation in low resource scenarios and for minority
 ## Projects and project ideas
 
 
-* [NMT maps:](NMT-map/): show available models and their quality on maps
+* [NMT maps:](NMT-map/): show available models and their quality on maps (NOTE: this project now moved to [OPUS-MT-map](https://github.com/Helsinki-NLP/OPUS-MT-map))
 * [NMT leaderboard:](NMT-leaderboard/) Create a streamlined and easy-to-use extensible leaderboard for NMT with support for a growing number of languages and benchmarks
 
 
